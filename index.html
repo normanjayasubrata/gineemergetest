@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Merge Tags</title>
+</head>
+
+<body>
+    <h1>
+        Merge Tags
+    </h1>
+    <script>
+         // TODO: 1. merge tags1,tags2
+      const tags1 = ["black", "red"];
+      const tags2 = ["S", "M", "L"];
+      const exampleResults = [
+        "black/S",
+        "black/M",
+        "black/L",
+        "red/S",
+        "red/M",
+        "red/L"
+      ];
+      console.log(exampleResults);
+
+      // TODO2: merge tags1, tags2, tags3
+      const tags3 = ["foo", "bar"];
+      const tagsArr = [tags1, tags2, tags3];
+      const exampleResults2 = ["black/S/foo", "black/S/bar"];
+      console.log(exampleResults2);
+
+        function merge2(params1, params2) {
+            const mergeArr = [];
+            for (let index = 0; index < params1.length; index++) {
+                for (let idx = 0; idx < params2.length; idx++) {
+                    mergeArr.push(params1[index].concat("/", params2[idx]))
+                }
+            }
+            return mergeArr;
+        }
+
+        function merge3(params1, params2, params3) {
+            for (let index = 0; index < params1.length; index++) {
+                for (let idx = 0; idx < params2.length; idx++) {
+                    for (let i = 0; i < params3.length; i++) {
+                        mergeArr.push(params1[index].concat("/", params2[idx]).concat("/", params3[i]))
+                    }
+                }
+            }
+            return mergeArr;
+        }
+
+        function mergeAll(params) {
+            const mergeArr = [];
+            for (let index = 0; index < params[params.length-1].length; index++) {
+                const tmp = [];
+                params.map((param, idx) => {
+                    if (params.length-1 === idx) return;
+                    param.map((prm, i) => {
+                        if (i === 0) {
+                            tmp.push(prm)
+                        }
+                    })
+                })
+                tmp.push(params[params.length-1][index]);
+                mergeArr.push(tmp.join("/"));
+            }
+            return mergeArr;
+        }
+
+        console.log(merge2(tags1, tags2))
+        // console.log(merge3(tags1, tags2, tags3))
+        console.log(mergeAll(tagsArr));
+    </script>
+</body>
+
+</html>
